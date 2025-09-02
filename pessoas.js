@@ -1,0 +1,110 @@
+//1. Criar uma Coleção: ○ Crie uma coleção chamada pessoas.
+use pessoas
+
+//2. Adicionar Documentos: ○ Insira 5 documentos na coleção pessoas. 
+
+db.pessoas.insertMany([
+    {
+        nome: "Alfredo da Silva",
+        idade: 58,
+        salario: 2500
+    },
+    {
+        nome: "Jéssica ALves",
+        idade: 32,
+        salario: 7000
+    },
+    {
+        nome: "Carina Mendes",
+        idade: 19,
+        salario: 900
+    },
+    {
+        nome: "Matheus Leite",
+        idade: 16,
+        salario: 10100
+    },
+    {
+        nome: "Hilda Souza",
+        idade: 64,
+        salario: 3500
+    }
+
+]);
+
+//3. Listar Todos os Documentos: ○ Liste todos os documentos presentes na coleção pessoas.
+
+db.pessoas.find()
+
+//4. Consultar Salário Superior a 1000: Liste todas as pessoas que têm um salário superior a 1000.
+db.pessoas.find({
+    salario:{
+        $gt: 1000
+    }
+})
+
+//5. Consultar Salário Inferior a 1700: Liste todas as pessoas que têm um salário menor que 1700.
+db.pessoas.find({
+    salario:{
+        $lt: 1700
+    }
+})
+
+//6. Consultar Salário Entre 1000 e 10000: Liste todas as pessoas que têm um salário entre 1000 e 10000 (inclusive).
+db.pessoas.find({
+    salario:{
+        $lt: 10000,
+        $gt: 1000
+    }
+})
+
+//7. Listar as Primeiras Duas Pessoas: Liste apenas as primeiras duas pessoas da coleção.
+db.pessoas.find().limit(2)
+
+
+//8. Listar Segunda e Terceira Pessoa:  Liste apenas a segunda e a terceira pessoa da coleção.
+db.pessoas.find().limit(2).skip(1)
+
+//9. Ordenar Salário em Ordem Decrescente: Liste todas as pessoas, ordenadas pelo salário de maior para menor
+db.pessoas.find().sort({
+    salario: -1
+})
+
+//10. Aumentar Salário de Todas as Pessoas: Aumente o salário de todas as pessoas em 500.   eraada
+
+db.pessoas.updateMany({},
+    {  $inc:{
+        salario: 500
+    }
+})
+
+
+
+//11. Aumentar Salário de Pessoas Específicas: Aumente o salário da pessoa que possui o nome específico que você escolher
+db.pessoas.updateOne({nome: "Hilda Souza"},
+{ $set:{
+    salario: 5000
+    }
+}) 
+
+/*12. Deletar Documentos: ○ Deletar Documentos com Salário Inferior a 1000:
+
+- Delete todos os documentos onde o salário é inferior a 1000.
+- Delete o documento que possui o nome específico que você escolher (por exemplo, "Ana Silva"). */
+
+db.pessoas.deleteMany(
+    {
+        salario:{$lt: 1000}
+    }  
+)
+
+
+db.pessoas.deleteOne(
+    {
+        nome: "Matheus Leite"
+    }  
+)
+
+
+//13. Deletar Todos os Documentos: ○ Delete todos os documentos na coleção pessoas.
+db.pessoas.deleteMany({})
