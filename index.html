@@ -1,4 +1,13 @@
-//1. Criar uma Coleção: ○ Crie uma coleção chamada pessoas.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. Criar uma Coleção: ○ Crie uma coleção chamada pessoas.
 use pessoas
 
 //2. Adicionar Documentos: ○ Insira 5 documentos na coleção pessoas. 
@@ -79,7 +88,6 @@ db.pessoas.updateMany({},
 })
 
 
-
 //11. Aumentar Salário de Pessoas Específicas: Aumente o salário da pessoa que possui o nome específico que você escolher
 db.pessoas.updateOne({nome: "Hilda Souza"},
 { $set:{
@@ -105,6 +113,9 @@ db.pessoas.deleteOne(
     }  
 )
 
-
 //13. Deletar Todos os Documentos: ○ Delete todos os documentos na coleção pessoas.
 db.pessoas.deleteMany({})
+    
+    </script>
+</body>
+</html>
