@@ -1,38 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Código MongoDB</title>
-    <style>
-        body {
-            font-family: monospace, monospace;
-            background-color: #1e1e1e;
-            color: #d4d4d4;
-            padding: 20px;
-        }
-        pre {
-            background-color: #2d2d2d;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            white-space: pre-wrap; /* para quebrar linhas se necessário */
-        }
-        /* Comentários em verde */
-        .comment {
-            color: #6a9955;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-
-<h1>Código MongoDB - Coleção Pessoas</h1>
-
-<pre>
-//<span class="comment">1. Criar uma Coleção:</span>
+    <p>
+        //1. Criar uma Coleção: ○ Crie uma coleção chamada pessoas.
 use pessoas
 
-//<span class="comment">2. Adicionar Documentos:</span>
+//2. Adicionar Documentos: ○ Insira 5 documentos na coleção pessoas. 
+
 db.pessoas.insertMany([
     {
         nome: "Alfredo da Silva",
@@ -59,26 +38,28 @@ db.pessoas.insertMany([
         idade: 64,
         salario: 3500
     }
+
 ]);
 
-//<span class="comment">3. Listar Todos os Documentos:</span>
+//3. Listar Todos os Documentos: ○ Liste todos os documentos presentes na coleção pessoas.
+
 db.pessoas.find()
 
-//<span class="comment">4. Consultar Salário Superior a 1000:</span>
+//4. Consultar Salário Superior a 1000: Liste todas as pessoas que têm um salário superior a 1000.
 db.pessoas.find({
     salario:{
         $gt: 1000
     }
 })
 
-//<span class="comment">5. Consultar Salário Inferior a 1700:</span>
+//5. Consultar Salário Inferior a 1700: Liste todas as pessoas que têm um salário menor que 1700.
 db.pessoas.find({
     salario:{
         $lt: 1700
     }
 })
 
-//<span class="comment">6. Consultar Salário Entre 1000 e 10000:</span>
+//6. Consultar Salário Entre 1000 e 10000: Liste todas as pessoas que têm um salário entre 1000 e 10000 (inclusive).
 db.pessoas.find({
     salario:{
         $lt: 10000,
@@ -86,48 +67,56 @@ db.pessoas.find({
     }
 })
 
-//<span class="comment">7. Listar as Primeiras Duas Pessoas:</span>
+//7. Listar as Primeiras Duas Pessoas: Liste apenas as primeiras duas pessoas da coleção.
 db.pessoas.find().limit(2)
 
-//<span class="comment">8. Listar Segunda e Terceira Pessoa:</span>
+
+//8. Listar Segunda e Terceira Pessoa:  Liste apenas a segunda e a terceira pessoa da coleção.
 db.pessoas.find().limit(2).skip(1)
 
-//<span class="comment">9. Ordenar Salário em Ordem Decrescente:</span>
+//9. Ordenar Salário em Ordem Decrescente: Liste todas as pessoas, ordenadas pelo salário de maior para menor
 db.pessoas.find().sort({
     salario: -1
 })
 
-//<span class="comment">10. Aumentar Salário de Todas as Pessoas:</span>
+//10. Aumentar Salário de Todas as Pessoas: Aumente o salário de todas as pessoas em 500.   eraada
+
 db.pessoas.updateMany({},
     {  $inc:{
         salario: 500
     }
 })
 
-//<span class="comment">11. Aumentar Salário de Pessoas Específicas:</span>
+
+
+//11. Aumentar Salário de Pessoas Específicas: Aumente o salário da pessoa que possui o nome específico que você escolher
 db.pessoas.updateOne({nome: "Hilda Souza"},
 { $set:{
     salario: 5000
     }
 }) 
 
-/*<span class="comment">12. Deletar Documentos:</span>
+/*12. Deletar Documentos: ○ Deletar Documentos com Salário Inferior a 1000:
+
 - Delete todos os documentos onde o salário é inferior a 1000.
 - Delete o documento que possui o nome específico que você escolher (por exemplo, "Ana Silva"). */
+
 db.pessoas.deleteMany(
     {
         salario:{$lt: 1000}
     }  
 )
+
+
 db.pessoas.deleteOne(
     {
         nome: "Matheus Leite"
     }  
 )
 
-//<span class="comment">13. Deletar Todos os Documentos:</span>
-db.pessoas.deleteMany({})
-</pre>
 
+//13. Deletar Todos os Documentos: ○ Delete todos os documentos na coleção pessoas.
+db.pessoas.deleteMany({})
+    </p>
 </body>
 </html>
